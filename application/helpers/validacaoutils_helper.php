@@ -1,5 +1,5 @@
 <?php
-include_once 'controleacesso_helper.php';
+//include_once 'controleacesso_helper.php';
 
 
 class ValidacaoUtils {
