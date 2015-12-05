@@ -8,7 +8,7 @@
                         <h3 class="m-b-none">Membros Cadastros</h3>
                     </div>
                     
-                    <div class="row wrapper">
+<!--                    <div class="row wrapper">-->
 
 
 

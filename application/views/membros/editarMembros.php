@@ -2,11 +2,12 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>js/jquery-ui/css/smoothness/jquery-ui-1.9.2.custom.css"/>
 <script type="text/javascript" src="<?php echo base_url() ?>js/jquery-ui/js/jquery-ui-1.9.2.custom.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ?>js/jquery.validate.js"></script>
-<div class="row-fluid" style="margin-top:0">
+<form class="row-fluid" style="margin-top:0">
     <div class="span12">
 
         <form action="<?php echo current_url(); ?>" method="post" id="formMembros" >
             <?php echo form_hidden('idMembro', $result->idMembro) ?>
+
 
         <div class="widget-box">
             <div class="widget-title">
@@ -46,6 +47,42 @@
                                 </header>
 
                                 <div class="panel-body">
+
+                                    <?php if ($result->foto_url != "" || $result->foto_url != null) { ?>
+                                        <div class="form-group" style="margin-top: -20px;">
+                                            <label class="col-sm-2 control-label">Foto</label>
+
+                                            <div class="col-sm-10">
+                                                <div class="row">
+                                                    <div class="col-md-2 ">
+                                                        <a href="#modalEditarFoto" role="button"
+                                                           data-toggle="modal">
+                                                            <img
+                                                                src="<?php echo base_url() ?>fotosMembros/<?php echo $result->foto_url ?> "
+                                                                class="dker img-thumbnail" alt="...">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php } else { ?>
+                                        <div class="form-group" style="">
+                                            <label class="col-sm-2 control-label">Foto</label>
+
+                                            <div class="col-sm-10">
+                                                <div class="row">
+                                                    <div class="col-md-12 ">
+                                                        <h4>Não há imagem cadastrata para
+                                                            o(a) <?php echo $result->cargo . " " . $result->nm_morador ?>
+                                                            . Por favor, <a href="#modalCadastrarFoto"
+                                                                            class="sumb" role="button"
+                                                                            data-toggle="modal">clique aqui</a>
+                                                            para cadastrar uma imagem.</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php } ?>
 
 
                                     <div class="form-group">
@@ -300,6 +337,8 @@
 
 
                                 <div class="panel-body">
+
+
                                     <div class="form-group">
                                         <label class="col-sm-2 control-labelNegrito">Matricula</label>
                                         <div class="col-sm-10">
@@ -537,25 +576,81 @@
 
 
                         </div>
-
-
                     </div>
             </section>
-
-
         </div>
-
             <div class="form-group">
                 <div class="col-sm-4 col-sm-offset-2">
                     <button type="submit" class="btn btn-default">Cancelar</button>
                     <button class="btn btn-primary">Editar</button>
                 </div>
             </div>
-
-
     </div>
 
+</form>
+
 </div>
+
+<div class="modal fade" id="modalEditarFoto">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="<?php echo base_url() ?>index.php/membros/editarImagemDiretoriaEditar" method="post"
+                  enctype="multipart/form-data">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h5 id="myModalLabel">Editar Foto do(a) Membros</h5>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="idImagem" name="id" value="<?php echo $result->membro_id ?>"/>
+                    <input type="hidden" id="idImagemBD" name="idImagemBD"
+                           value="<?php echo $result->idFotos ?>"/>
+                    <input type="hidden" id="categoriaEditarFoto" name="categoriaEditarFoto" value="corpoDiretivo"/>
+                    <input type="hidden" id="urlarquivos" name="arquivo" value="<?php echo $result->foto_url ?>"/>
+                    <h5 style="text-align: center">Escolha a nova foto</h5>
+
+                    <div class="form-control">
+                        <input type="file" id="imagemMembro" name="imagemEditarMembro" onchange="loadFile(event)">
+                        <input type="hidden" id="nomeEditarFoto" name="nomeEditarFoto" class="form-control">
+                    </div>
+                    <img id="image_preview" style=" margin-top: 10px;"/>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" name="submit">Editar</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<script>
+    var loadFile = function (event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var output = document.getElementById('image_preview');
+            output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    };
+</script>
+<script>
+    $(document).ready(function () {
+        $("#imagemMembro").change(function () {
+            $("#image_preview").css({"height": "200px", "width": "200px;"});
+        });
+        $("#imagem1").change(function () {
+            $("#image_preview1").css({"height": "200px", "width": "200px;"});
+        });
+
+        $('input:file').change(function () {
+            var nome_arq = $(this).val().split("\\").pop();
+            $("#nomeEditarFoto").val(nome_arq);
+        });
+    });
+</script>
 
 
 <script type="text/javascript">

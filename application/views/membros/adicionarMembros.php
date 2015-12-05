@@ -222,7 +222,7 @@
                     <div class="col-md-4">
 
                         <input id="rg" name="rg" type="text" class="form-control" placeholder="Identidade"
-                               maxlength="10" onKeyDown="Mascara(this, rga);" onKeyPress="Mascara(this, rga);"
+                               onKeyDown="Mascara(this, rga);" onKeyPress="Mascara(this, rga);"
                                onKeyUp="Mascara(this, rga);">
                     </div>
 

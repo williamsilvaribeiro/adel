@@ -8,7 +8,7 @@ class Membros extends CI_Controller {
         parent::__construct();
                 
 		
-		$this->load->helper(array('form','codegen_helper','validacaoutils_helper'));
+		$this->load->helper(array('form','codegen_helper','validacaoutils_helper', 'gerenciararquivos_helper','dadosPaginas_helper'));
 		$this->load->model('membros_model','',TRUE);
 		$this->data['menuAgenda'] = 'Agenda';
 	}	
@@ -141,7 +141,6 @@ class Membros extends CI_Controller {
 
     
     function editar() {
-        
         $this->load->library('form_validation');
         $this->data['custom_error'] = '';
 
@@ -285,18 +284,34 @@ class Membros extends CI_Controller {
         redirect(base_url().'index.php/membros/gerenciar/');
 
     }
-    
 
-
-
-    public function autoCompleteCliente(){
-
-        if (isset($_GET['term'])){
-            $q = strtolower($_GET['term']);
-            $this->vendas_model->autoCompleteCliente($q);
-        }
-
+    public function editarImagemDiretoriaEditar() {
+        $this->editarImagem($this->input->post('id'), 'imagemEditarMembro');
+        redirect(base_url() . 'index.php/membros/editar/' . $this->input->post('id'));
     }
+
+    private function editarImagem($id, $idImagemHTML) {
+        if (!empty($_FILES[$idImagemHTML]['name'])) {
+            $dataFoto = GerenciarArquivos::salvarImagemPasta($id, $this->input->post('categoriaEditarFoto'),
+                'membro_id', 'fotosMembros', $idImagemHTML);
+            $this->excluirImagenAntiga($id);
+            $this->membros_model->edit('fotos', $dataFoto, 'idFotos', $this->input->post('idImagemBD'));
+            $this->session->set_flashdata('success', 'Imagem editada com sucesso!');
+        }
+    }
+
+    private function excluirImagenAntiga($id) {
+        $arquivoExcluir = 'fotosMembros/' . $this->input->post('arquivo');
+        if (unlink($arquivoExcluir)) {
+            $this->session->set_flashdata('success', '');
+        }
+        $this->db->where('idFotos', $id);
+        $this->db->delete('fotos');
+    }
+
+
+
+
 
 
 }
