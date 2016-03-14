@@ -15,7 +15,10 @@
             </div>
             <div class="widget-content">
                 <ul class="site-stats">
-                    <li><a href="<?php echo base_url()?>index.php/relatorios/clientesRapid"><i class="icon-user"></i> <small>Mês Atual </small></a></li>
+
+                    <li><a href="#" id="aniversariantesDia"><i class="icon-user"></i>
+                            <small>Mês Atual</small>
+                        </a></li>
                 </ul>
             </div>
         </div>
@@ -76,16 +79,24 @@ formRelatorio.submit();
 }
 
 function abreRelatorioMensal() {
-    
         var url = "<?php echo base_url() ?>index.php/membros/visualizarAniversariantes";
         var win = window.open(url, name="_blank", "left=400,top=100,width=700,height=500,location=no,menubar=no,toolbar=no");
-           
         win.print();
-    }
-    
+    };
+
+   function relatorioAniversariantesMes() {
+       var url = "<?php echo base_url() ?>index.php/membros/visualizarAniversariantesMesAtual/";
+       var win = window.open(url, name = "_blank", "left=400,top=300,width=700,height=500,location=no,menubar=no,toolbar=no");
+       win.print();
+   };
+
+   $(document).ready(function () {
+       $("#aniversariantesDia").click(function () {
+           relatorioAniversariantesMes();
+           return false;
+       })
+   });
     $(".datepicker").datepicker({dateFormat: 'dd/mm/yy'});
-
-
 </script>
 
 

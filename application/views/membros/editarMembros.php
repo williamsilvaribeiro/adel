@@ -436,7 +436,7 @@
 
                                         <div class="col-sm-10">
                                             <input id="locaConversao" name="locaConversao" type="text" class="form-control"
-                                                   value="<?php echo $result->locaConversao ?>">
+                                                   value="<?php echo $result->localConversao ?>">
                                         </div>
                                     </div>
 
@@ -609,7 +609,7 @@
                     <h5 style="text-align: center">Escolha a nova foto</h5>
 
                     <div class="form-control">
-                        <input type="file" id="imagemMembro" name="imagemEditarMembro" onchange="loadFile(event)">
+                        <input type="file" id="imagemMembroEdit" name="imagemMembroEdit" onchange="loadFile(event)">
                         <input type="hidden" id="nomeEditarFoto" name="nomeEditarFoto" class="form-control">
                     </div>
                     <img id="image_preview" style=" margin-top: 10px;"/>

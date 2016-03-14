@@ -16,6 +16,7 @@ class GerenciarArquivos extends CI_Controller {
 
     public function salvarImagemPasta($id, $categoriaImagem, $referente, $pastaUpload, $idImagemHTML) {
         $nomeFoto = $id . "-" . $categoriaImagem . date('dmYis');
+        $nomeFoto = $nomeFoto.'.png';
         $config = self::cabecalhoUploadImagem($pastaUpload, $nomeFoto);
         $this->upload->do_upload($idImagemHTML);
         return $dataFoto = array('foto_url' => $config['file_name'] . ".jpg", $referente => $id);
@@ -23,9 +24,9 @@ class GerenciarArquivos extends CI_Controller {
 
     public function cabecalhoUploadImagem($pastaUpload, $nomeFoto) {
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
-        $config['max_size'] = '300000';
-        $config['max_width'] = '1600';
-        $config['max_height'] = '1600';
+        $config['max_size'] = '3000';
+        $config['max_width'] = '1000';
+        $config['max_height'] = '1000';
         $config['upload_path'] = $pastaUpload;
         $config['file_name'] = $nomeFoto;
         $this->load->library('upload', $config);

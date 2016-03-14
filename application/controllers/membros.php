@@ -137,9 +137,7 @@ class Membros extends CI_Controller {
         $this->data['view'] = 'membros/adicionarMembros';
         $this->load->view('tema/topo', $this->data);
     }
-    
 
-    
     function editar() {
         $this->load->library('form_validation');
         $this->data['custom_error'] = '';
@@ -190,9 +188,8 @@ class Membros extends CI_Controller {
         $this->data['result'] = $this->membros_model->getById($this->uri->segment(3));
         $this->data['view'] = 'membros/editarMembros';
         $this->load->view('tema/topo', $this->data);
-   
-    }
 
+    }
     public function visualizar(){
         $this->data['custom_error'] = '';
         $this->data['result'] = $this->membros_model->getById($this->uri->segment(3));
@@ -230,28 +227,25 @@ class Membros extends CI_Controller {
         $this->load->view('tema/topoRelatorios',$this->data);
        
     }
-    
-    
-     public function relatorioAniversariantes(){
+    public function relatorioAniversariantes(){
         $this->data['view'] = 'aniversariantes/aniversariantes';
         $this->load->view('tema/topo',$this->data);
     }
-    
-       
     public function visualizarAniversariantes(){
-        
         $mes = $this->input->get('mes');
         $dataConsulta = date('Y-'.$mes.'-01');
-        
-
         $this->data['results'] = $this->membros_model->relatorioAniversarios($dataConsulta);
-    
-        $this->data['view'] = 'relatorios/relatorioAniversariantes';
+        $this->data['view'] = 'relatorios/relatorioAniversarios';
         $this->load->view('tema/topoRelatorios', $this->data);
     }
-    
-	
-    function excluir(){
+
+    public function visualizarAniversariantesMesAtual() {
+        $dataConsulta = date('Y-m-01');
+        $this->data['results'] = $this->membros_model->relatorioAniversarios($dataConsulta);
+        $this->data['view'] = 'relatorios/relatorioAniversarios';
+        $this->load->view('tema/topoRelatorios', $this->data);
+    }
+    public function excluir(){
 
 //        if($this->session->userdata('nivel') != 1){
 //            $this->session->set_flashdata('error','Você não tem permissão para essa ação.');
@@ -284,22 +278,19 @@ class Membros extends CI_Controller {
         redirect(base_url().'index.php/membros/gerenciar/');
 
     }
-
     public function editarImagemDiretoriaEditar() {
-        $this->editarImagem($this->input->post('id'), 'imagemEditarMembro');
+        $this->editarImagem($this->input->post('id'), 'imagemMembroEdit');
         redirect(base_url() . 'index.php/membros/editar/' . $this->input->post('id'));
     }
-
     private function editarImagem($id, $idImagemHTML) {
         if (!empty($_FILES[$idImagemHTML]['name'])) {
-            $dataFoto = GerenciarArquivos::salvarImagemPasta($id, $this->input->post('categoriaEditarFoto'),
+            $dataFoto = GerenciarArquivos::salvarImagemPasta($id, 'membro',
                 'membro_id', 'fotosMembros', $idImagemHTML);
             $this->excluirImagenAntiga($id);
             $this->membros_model->edit('fotos', $dataFoto, 'idFotos', $this->input->post('idImagemBD'));
             $this->session->set_flashdata('success', 'Imagem editada com sucesso!');
         }
     }
-
     private function excluirImagenAntiga($id) {
         $arquivoExcluir = 'fotosMembros/' . $this->input->post('arquivo');
         if (unlink($arquivoExcluir)) {
@@ -309,9 +300,19 @@ class Membros extends CI_Controller {
         $this->db->delete('fotos');
     }
 
+    function adicionarAniversariante(){
+            $data = array(
+                'nomeAniversariante' => $this->input->post('nomeAniversariante'),
+                'telefoneAniversariante' => $this->input->post('telefoneAniversariante'),
+                'dataNascimento' => ValidacaoUtils::validarData($this->input->post('dataNascimento'))
+            );
 
-
-
-
-
+            if (is_numeric($id = $this->membros_model->add('aniversariantes', $data, true)) ) {
+                    $this->session->set_flashdata('success','Aniversariante adicionado com sucesso.');
+            } else {
+                $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro.</p></div>';
+            }
+        redirect('membros/gerenciar');
+        $this->load->view('tema/topo', $this->data);
+    }
 }

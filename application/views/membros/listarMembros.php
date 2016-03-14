@@ -35,6 +35,7 @@
                                 </div>
                             </div>
                             <a href="<?php echo base_url(); ?>index.php/membros/adicionar" class="btn btn-s-md btn-success">Adicionar</a>
+                            <a href="#modalCadastrarAniversarios" data-toggle="modal" class="btn btn-s-md btn-primary">Aniversariantes</a>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-striped b-t b-light">
@@ -137,6 +138,57 @@
     </div><!-- /.modal-dialog -->
 </div>
 
+
+<!--Cadastrar Aniversarios-->
+<div class="modal fade" id="modalCadastrarAniversarios">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="<?php echo base_url() ?>index.php/membros/adicionarAniversariante" method="post" >
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h5 id="myModalLabel">Cadastrar Aniversariantes</h5>
+                </div>
+                <div class="modal-body">
+<!--                    <h5 style="text-align: center">Cadastro Provisorio</h5>-->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-labelNegrito">Nome</label>
+                        <div class="col-sm-10">
+                            <div class="col-md-10">
+                                <input id="nomeAniversariante" class="form-control" type="text" name="nomeAniversariante"
+                                       placeholder="Nome" maxlength="25"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <labelNegrito class="col-sm-2 control-labelNegrito">Data Nascimento</labelNegrito>
+                        <div class="col-sm-10">
+                                <div class="col-md-6">
+                                    <input id="dataNascimento" class="form-control" type="text" name="dataNascimento"
+                                           placeholder="Data de Nascimento" maxlength="10" onKeyDown="Mascara(this, Data);"
+                                           onKelayPress="Mascara(this, Data);" onKeyUp="Mascara(this, Data);"/>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <labelNegrito class="col-sm-2 control-labelNegrito">Telefone</labelNegrito>
+                        <div class="col-sm-10">
+                            <div class="col-md-6">
+                                <input id="telefoneAniversariante" class="form-control" type="text" name="telefoneAniversariante"
+                                       placeholder="Telefone" maxlength="14" onKeyDown="Mascara(this, Telefone);"
+                                       onKelayPress="Mascara(this, Data);" onKeyUp="Mascara(this, Telefone);"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+                    <button class="btn btn-primary">Cadastrar Aniversário</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
 <script type="text/javascript">
     function abrePopup() {
         var url = "<?php echo base_url() ?>index.php/relatorios/visualizarContratoVendas/<?php echo $result->idMembro ?>";
@@ -168,3 +220,13 @@
             
 
 </script>
+
+<style>
+    .form-control{
+        margin-bottom: 10px;
+    }
+
+    .modal-body{
+        margin-bottom: 100px;
+    }
+</style>

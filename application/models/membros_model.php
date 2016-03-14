@@ -34,7 +34,6 @@ class Membros_model extends CI_Model {
         return $this->db->get('membros')->row();
     }
 
-    
     function add($table,$data,$returnId = false){
         $this->db->insert($table, $data);         
         if ($this->db->affected_rows() == '1')
@@ -106,7 +105,7 @@ class Membros_model extends CI_Model {
     
 
     public function relatorioAniversarios($dataConsulta){
-    $query = "SELECT * FROM membros WHERE MONTH(dataNascimento) = MONTH('".$dataConsulta."')";
+    $query = "SELECT * FROM aniversariantes WHERE MONTH(dataNascimento) = MONTH('".$dataConsulta."')";
         return $this->db->query($query)->result();
     }
 
