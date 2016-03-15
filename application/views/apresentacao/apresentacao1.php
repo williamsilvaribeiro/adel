@@ -73,9 +73,9 @@
 
 
                     echo '<td>
-                                           <a href="' . base_url() . 'index.php/morador/visualizar/' . $r->idApresentacao . '" title="Ver mais detalhes"><i class="icon-eye-open"></i></a></td>';
+                                           <a href="' . base_url() . 'morador/visualizar/' . $r->idApresentacao . '" title="Ver mais detalhes"><i class="icon-eye-open"></i></a></td>';
                     echo '<td>
-                                           <a href="' . base_url() . 'index.php/morador/editar/' . $r->idApresentacao . '" title="Editar"><i class="icon-pencil"></i></a></td>';
+                                           <a href="' . base_url() . 'morador/editar/' . $r->idApresentacao . '" title="Editar"><i class="icon-pencil"></i></a></td>';
                     echo '<td>
                                            
                                         <a href="#modal-form" role="button" data-toggle="modal" apresentacaoid="' . $r->idApresentacao . '"  title="Excluir Morador"><i class="icon-remove" style="color:red"></i></a>  
@@ -116,7 +116,7 @@
             </div>
             <div class="panel-body">
 
-                <form class="form-horizontal" id="formAdicionarMudanca" action="<?php echo base_url() ?>index.php/apresentacao/adicionar" method="post">
+                <form class="form-horizontal" id="formAdicionarMudanca" action="<?php echo base_url() ?>apresentacao/adicionar" method="post">
  
                      <div class="form-group">
                                 <label class="col-sm-2 control-labelNegrito">Datas</label>
@@ -195,7 +195,7 @@
 
 
 
-            <form action="<?php echo base_url() ?>index.php/apresentacao/excluir" method="post" >
+            <form action="<?php echo base_url() ?>apresentacao/excluir" method="post" >
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     <h5 id="myModalLabel">Excluir Criança</h5>

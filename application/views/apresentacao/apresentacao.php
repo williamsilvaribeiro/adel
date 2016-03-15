@@ -116,7 +116,7 @@ idApresentacao="'.$r->idApresentacao.'" dataNascimento="' . date('d/m/Y', strtot
             </div>
             <div class="panel-body">
 
-                <form class="form-horizontal" id="formAdicionarMudanca" action="<?php echo base_url() ?>index.php/apresentacao/adicionar" method="post">
+                <form class="form-horizontal" id="formAdicionarMudanca" action="<?php echo base_url() ?>apresentacao/adicionar" method="post">
  
                      <div class="form-group">
                                 <label class="col-sm-2 control-labelNegrito">Datas</label>
@@ -195,7 +195,7 @@ idApresentacao="'.$r->idApresentacao.'" dataNascimento="' . date('d/m/Y', strtot
             </div>
             <div class="panel-body">
 
-                <form class="form-horizontal" id="formAdicionarMudanca" action="<?php echo base_url() ?>index.php/apresentacao/editar" method="post">
+                <form class="form-horizontal" id="formAdicionarMudanca" action="<?php echo base_url() ?>apresentacao/editar" method="post">
  
                     <div class="form-group">
                         <label class="col-sm-2 control-labelNegrito">Data Nascimento</label>
@@ -277,7 +277,7 @@ idApresentacao="'.$r->idApresentacao.'" dataNascimento="' . date('d/m/Y', strtot
 <div class="modal fade" id="modal-form">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="<?php echo base_url() ?>index.php/apresentacao/excluir" method="post" >
+            <form action="<?php echo base_url() ?>apresentacao/excluir" method="post" >
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     <h5 id="myModalLabel">Excluir Criança</h5>

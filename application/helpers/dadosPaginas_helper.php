@@ -13,7 +13,7 @@ class DadosPaginas {
     public function layoutPaginacao($page, $totalRegistros) {
 
         $this->load->library('pagination');
-        $config['base_url'] = base_url().'index.php/'.$page;
+        $config['base_url'] = base_url().''.$page;
         $config['total_rows'] = $totalRegistros;
         $config['per_page'] = 10;
         $config['next_link'] = 'Pr&oacute;xima';

@@ -22,7 +22,7 @@ class Apresentacao extends CI_Controller {
              $this->load->library('pagination');
         
         
-        $config['base_url'] = base_url().'index.php/agenda/gerenciar/';
+        $config['base_url'] = base_url().'agenda/gerenciar/';
         $config['total_rows'] = $this->apresentacao_model->count('apresentacao');
         $config['per_page'] = 10;
         $config['next_link'] = 'Próxima';
@@ -137,7 +137,7 @@ class Apresentacao extends CI_Controller {
 
             if ($this->agenda_model->edit('tb003compromissos', $data, 'codAgenda', $this->input->post('codAgenda')) == TRUE) {
                 $this->session->set_flashdata('success','Compromisso editada com sucesso!');
-                redirect(base_url() . 'index.php/agenda/editar/'.$this->input->post('codAgenda'));
+                redirect(base_url() . 'agenda/editar/'.$this->input->post('codAgenda'));
             } else {
                 $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro</p></div>';
             }
@@ -193,7 +193,7 @@ class Apresentacao extends CI_Controller {
         if ($id == null){
 
             $this->session->set_flashdata('error','Erro ao tentar excluir Compromisso.');            
-            redirect(base_url().'index.php/apresentacao/gerenciar/');
+            redirect(base_url().'apresentacao/gerenciar/');
         }
 
        

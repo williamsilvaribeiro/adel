@@ -333,7 +333,7 @@
         <div class="form-group">
             <labelNegrito class="col-sm-2 control-labelNegrito" for="Nome">Foto</labelNegrito>
             <div class="col-sm-10">
-                <input type="file" class="form-control" id="fotoMembro" name="fotoMembro">
+                <input type="file" class="form-control" id="imagemMembro" name="imagemMembro">
             </div>
         </div>
 
@@ -341,7 +341,7 @@
         <div class="line line-dashed b-b line-lg pull-in"></div>
         <div class="form-group">
             <div class="col-sm-4 col-sm-offset-2">
-                <button type="submit" class="btn btn-default">Cancelar</button>
+                <a href="<?php echo base_url() ?>membros" id="" class="btn btn-dark"><i class="icon-arrow-left"></i> Voltar</a>
                 <button class="btn btn-primary">Cadastrar</button>
             </div>
         </div>
@@ -361,16 +361,16 @@
                 nomeMembro: {required: true},
                 endereco: {required: true},
                 telCelular: {required: true},
+//                fotoMembro: {required: true},
                 telResidencial: {required: true},
-                fotoMembro: {required: true},
                 rg: {required: true}
             },
             messages: {
                 nomeMembro: {required: 'Campo Requerido.'},
                 endereco: {required: 'Campo Requerido.'},
                 telCelular: {required: 'Campo Requerido.'},
+//                fotoMembro: {required: 'Campo Requerido.'},
                 telResidencial: {required: 'Campo Requerido.'},
-                fotoMembro: {required: 'Campo Requerido.'},
                 rg: {required: 'Campo Requerido.'}
             },
             errorClass: "help-inline",

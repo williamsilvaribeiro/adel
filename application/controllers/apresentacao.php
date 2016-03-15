@@ -22,7 +22,7 @@ class Apresentacao extends CI_Controller {
              $this->load->library('pagination');
         
         
-        $config['base_url'] = base_url().'index.php/apresentacao/gerenciar/';
+        $config['base_url'] = base_url().'apresentacao/gerenciar/';
         $config['total_rows'] = $this->apresentacao_model->count('apresentacao');
         $config['per_page'] = 10;
         $config['next_link'] = 'Próxima';
@@ -166,7 +166,7 @@ class Apresentacao extends CI_Controller {
         $this->data['custom_error'] = '';
         $this->data['result'] = $this->membros_model->getById($this->uri->segment(3));
     
-        $this->data['view'] = 'relatorios/fichaCadastral';
+        $this->data['view'] = 'relatorios/imprimir/fichaCadastral';
         
         $this->load->view('tema/topoRelatorios',$this->data);
        
@@ -198,7 +198,7 @@ class Apresentacao extends CI_Controller {
         if ($id == null){
 
             $this->session->set_flashdata('error','Erro ao tentar excluir Compromisso.');            
-            redirect(base_url().'index.php/apresentacao/gerenciar/');
+            redirect(base_url().'apresentacao/gerenciar/');
         }
 
        

@@ -11,13 +11,13 @@
                 <span class="icon">
                     <i class="icon-list-alt"></i>
                 </span>
-                <h5>Aniversariantes mês atual</h5>
+                <h5>Todos os Membros</h5>
             </div>
             <div class="widget-content">
                 <ul class="site-stats">
 
-                    <li><a href="#" id="aniversariantesDia"><i class="icon-user"></i>
-                            <small>Mês Atual</small>
+                    <li><a href="#" id="todosMembros"><i class="icon-user"></i>
+                            <small>Todos os Membros</small>
                         </a></li>
                 </ul>
             </div>
@@ -36,22 +36,20 @@
                 <div class="span12 well">
                     <div align="center">
                         
-                    <form class="form-inline" action="<?php echo base_url()?>index.php/membros/visualizarAniversariantes" name="formRelatorio" target="Postagem" method="get">
+                    <form class="form-inline" action="<?php echo base_url()?>membros/visualizarMembrosPorCargo" name="formRelatorio" target="Postagem" method="get">
                         
                         <div class="form-group">
-                            <select name="mes"class="form-control">
-                                <option value="01">Janeiro</option>
-                                <option value="02">Fevereiro</option>
-                                <option value="03">Março</option>
-                                <option value="04">Abril</option>
-                                <option value="05">Maio</option>
-                                <option value="06">Junho</option>
-                                <option value="07">Julho</option>
-                                <option value="08">Agosto</option>
-                                <option value="09">Setembro</option>
-                                <option value="10">Outubro</option>
-                                <option value="11">Novembro</option>
-                                <option value="12">Dezembro</option>
+                            <select name="cargo" class="form-control">
+                                <option>Novo Convertido</option>
+                                <option>Congregado</option>
+                                <option>Membro</option>
+                                <option>Auxiliar</option>
+                                <option>Diacono</option>
+                                <option>Diaconisa</option>
+                                <option>Presbitero(a)</option>
+                                <option>Missionário(a)</option>
+                                <option>Evangelista(a)</option>
+                                <option>Pastor(a)</option>
                             </select>
                         </div>
                          <button class="btn btn-inverse" type="submit" onclick="postaDados();" ><i class="icon-print icon-white"></i> Imprimir</button>
@@ -79,20 +77,20 @@ formRelatorio.submit();
 }
 
 function abreRelatorioMensal() {
-        var url = "<?php echo base_url() ?>index.php/membros/visualizarAniversariantes";
+        var url = "<?php echo base_url() ?>membros/visualizarAniversariantes";
         var win = window.open(url, name="_blank", "left=400,top=100,width=700,height=500,location=no,menubar=no,toolbar=no");
         win.print();
     };
 
-   function relatorioAniversariantesMes() {
-       var url = "<?php echo base_url() ?>index.php/membros/visualizarAniversariantesMesAtual/";
+   function relatorioTodosMembros() {
+       var url = "<?php echo base_url() ?>membros/visualizarTodosMembros/";
        var win = window.open(url, name = "_blank", "left=400,top=300,width=700,height=500,location=no,menubar=no,toolbar=no");
        win.print();
    };
 
    $(document).ready(function () {
-       $("#aniversariantesDia").click(function () {
-           relatorioAniversariantesMes();
+       $("#todosMembros").click(function () {
+           relatorioTodosMembros();
            return false;
        })
    });

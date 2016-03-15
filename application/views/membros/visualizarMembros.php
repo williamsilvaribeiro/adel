@@ -26,7 +26,7 @@
                                 <tbody>
                                     <tr>
                                         <td style="text-align: right; width: 30%"><strong>Código</strong></td>
-                                        <td><a href="<?php echo base_url() ?>index.php/clientes/visualizar/<?php echo $result->cargo ?>"><?php echo $result->idMembro ?></a></td>
+                                        <td><a href="<?php echo base_url() ?>clientes/visualizar/<?php echo $result->cargo ?>"><?php echo $result->idMembro ?></a></td>
                                     </tr>
                                     <tr>
                                         <td style="text-align: right"><strong>Nome</strong></td>
@@ -207,19 +207,14 @@ echo $dataBatismoAguas ?></td>
 
         <script type="text/javascript">
             function abreFichaCadastral() {
-                var url = "<?php echo base_url() ?>index.php/membros/visualizarFichaCadastral/<?php echo $result->idMembro ?>";
+                var url = "<?php echo base_url() ?>membros/visualizarFichaCadastral/<?php echo $result->idMembro ?>";
                         var win = window.open(url, name = "_blank", "left=400,top=300,width=700,height=500,location=no,menubar=no,toolbar=no");
-
                         win.print();
                     }
-
-
                     $(document).ready(function() {
                         $("#fichaCadastral").click(function() {
                             abreFichaCadastral();
                             return false;
                         })
                     });
-
-
         </script>

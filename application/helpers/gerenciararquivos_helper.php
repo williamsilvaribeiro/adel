@@ -1,7 +1,8 @@
 <?php
 include_once 'dadospaginas_helper.php';
 
-class GerenciarArquivos extends CI_Controller {
+class GerenciarArquivos extends CI_Controller
+{
 
     public function adicionarArquivoInformativo($id) {
         $nomeArquivo = $id . '-ArquivoAnexo' . date('dmYis');
@@ -15,16 +16,21 @@ class GerenciarArquivos extends CI_Controller {
     }
 
     public function salvarImagemPasta($id, $categoriaImagem, $referente, $pastaUpload, $idImagemHTML) {
-        $nomeFoto = $id . "-" . $categoriaImagem . date('dmYis');
-        $nomeFoto = $nomeFoto.'.png';
+        $nomeFoto = $id.$categoriaImagem . date('dmYis');
+        $nomeFoto = $nomeFoto . '.jpg';
         $config = self::cabecalhoUploadImagem($pastaUpload, $nomeFoto);
-        $this->upload->do_upload($idImagemHTML);
-        return $dataFoto = array('foto_url' => $config['file_name'] . ".jpg", $referente => $id);
+        if ($this->upload->do_upload($idImagemHTML)) {
+            return $dataFoto = array('foto_url' => $config['file_name'], $referente => $id);
+        } else {
+            $this->session->set_flashdata('error', 'Ocorreu: Verifique o formato (Permitido somente JPG/JPEG) ou tamanho da imagem.');
+            return false;
+        }
+
     }
 
     public function cabecalhoUploadImagem($pastaUpload, $nomeFoto) {
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
-        $config['max_size'] = '3000';
+        $config['max_size'] = '100';
         $config['max_width'] = '1000';
         $config['max_height'] = '1000';
         $config['upload_path'] = $pastaUpload;

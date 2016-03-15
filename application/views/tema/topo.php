@@ -105,14 +105,14 @@
                                                 </a>
                                                 <ul class="nav dk">
                                                     <li >
-                                                        <a href="<?php echo base_url(); ?>index.php/membros/" class="auto">                                                        
+                                                        <a href="<?php echo base_url(); ?>membros/" class="auto">
                                                             <i class="i i-dot"></i>
 
                                                             <span>Membro</span>
                                                         </a>
                                                     </li>
                                                     <li >
-                                                        <a href="<?php echo base_url(); ?>index.php/apresentacao/" class="auto">                                                        
+                                                        <a href="<?php echo base_url(); ?>apresentacao/" class="auto">
                                                             <i class="i i-dot"></i>
 
                                                             <span>Recem Nacidos</span>
@@ -134,21 +134,15 @@
                                                 </a>
                                                 <ul class="nav dk">
                                                     <li >
-                                                        <a href="<?php echo base_url(); ?>index.php/membros/relatorioGeral/" class="auto">                                                        
+                                                        <a href="<?php echo base_url(); ?>membros/relatorioMembros/" class="auto">
                                                             <i class="i i-dot"></i>
 
-                                                            <span>Geral</span>
+                                                            <span>Membros</span>
                                                         </a>
                                                     </li>
-                                                    <li >
-                                                        <a href="<?php echo base_url(); ?>index.php/membros/relatorioPorCargo" class="auto" target="_blank">                                                        
-                                                            <i class="i i-dot"></i>
 
-                                                            <span>Por Cargo</span>
-                                                        </a>
-                                                    </li>
                                                     <li >
-                                                        <a href="<?php echo base_url(); ?>index.php/membros/relatorioAniversariantes" class="auto" target="_blank">                                                        
+                                                        <a href="<?php echo base_url(); ?>membros/relatorioAniversariantes" class="auto" target="_blank">
                                                             <i class="i i-dot"></i>
 
                                                             <span>Aniversariantes Mês</span>
